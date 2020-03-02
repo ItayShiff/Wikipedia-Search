@@ -1,0 +1,414 @@
+@charset "UTF-8";
+/* latin */
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Roboto"), local("Roboto-Regular"), url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu4mxK.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+#menu-bar {
+  background-color: #ff9999;
+  width: 100vw;
+  height: 8vh;
+  position: fixed;
+  z-index: 10;
+  top: 0; }
+  #menu-bar:after {
+    content: "";
+    display: block;
+    clear: both; }
+  #menu-bar h1 {
+    float: left; }
+  #menu-bar ul {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.75vh; }
+  #menu-bar li {
+    margin-right: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+    list-style-type: none; }
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth; }
+
+body {
+  background-image: url(imgs/saltbackground.jpg);
+  background-blend-mode: lighten;
+  background-color: rgba(255, 255, 255, 0.6);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: Roboto;
+  margin: 0;
+  padding: 0; }
+
+main {
+  margin-top: 100px; }
+
+#content ul li {
+  list-style-type: none;
+  border-bottom: 5px solid black; }
+
+h2 > span {
+  font-size: 50px;
+  padding: 5px;
+  text-decoration: underline;
+  background: url(imgs/logotext.jpg);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-position: center;
+  background-size: 100% 40%;
+  background-color: black; }
+
+#form {
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  top: 30vh; }
+  #form h2 {
+    font-family: "Arial";
+    position: relative;
+    top: -25px;
+    font-size: 40px;
+    display: inline; }
+
+#wikipic {
+  width: 100px; }
+
+.onSearchInput {
+  transition: border-bottom-right-radius 500ms, border-bottom-left-radius 500ms;
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important; }
+
+input[name="search"] {
+  margin-right: 10px;
+  font-family: Roboto;
+  font-size: 18px;
+  width: 30vw;
+  margin-left: 4px;
+  padding: 7px;
+  border: 2px solid #dadada;
+  border-radius: 15px; }
+  input[name="search"]:focus {
+    transition: border-radius 400ms;
+    outline: none;
+    border-color: #668cff;
+    box-shadow: 0px 0px 10px #668cff; }
+  input[name="search"]::placeholder {
+    text-align: left; }
+
+input.ng-invalid.ng-dirty {
+  outline: none;
+  box-shadow: 0 0 2px red;
+  border: 2px solid red; }
+
+input[name="nums"] {
+  font-family: Roboto;
+  font-size: 18px;
+  margin-left: 4px;
+  width: 50px;
+  outline: none;
+  padding: 5px;
+  border: 2px solid #dadada;
+  border-radius: 15px; }
+
+#suggestions {
+  text-align: left;
+  background-color: #ffeee6;
+  padding: 5px;
+  border: 4px solid black;
+  margin-top: -3px;
+  border-top: none;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  width: 30vw; }
+  #suggestions ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    border-bottom: 3px solid gray; }
+    #suggestions ul li {
+      cursor: pointer;
+      padding: 4px; }
+
+#alert1, #alert2, #suggestions {
+  position: absolute;
+  z-index: 5; }
+
+#langs {
+  position: absolute;
+  font-family: Arial;
+  font-size: 18px;
+  left: 155px;
+  top: -4px;
+  outline: none;
+  z-index: 100;
+  padding: 5px;
+  border: 2px solid #dadada;
+  border-radius: 15px; }
+  #langs option {
+    padding: 5px; }
+
+#searchbutton {
+  outline: none;
+  position: relative;
+  left: 10px;
+  top: -3px;
+  padding: 10px 20px;
+  border: 2px solid #668cff;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: #66a3ff;
+  transition: background-color 500ms; }
+  #searchbutton:hover {
+    cursor: pointer;
+    background-color: #8ab8ff; }
+
+.last-suggestion {
+  border-bottom: none !important; }
+
+#content {
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 30px;
+  padding-bottom: 0;
+  margin: 40px auto;
+  width: 85vw; }
+  #content ul {
+    margin: 0;
+    padding: 0; }
+    #content ul li {
+      font-size: 18px;
+      position: relative;
+      margin-bottom: 30px;
+      padding-bottom: 50px;
+      overflow: auto; }
+      #content ul li ul li {
+        margin-left: 20px;
+        overflow: visible;
+        border-bottom: none;
+        list-style-type: square;
+        padding: 0; }
+
+.section1 {
+  float: left; }
+
+.section2 {
+  margin-left: 230px; }
+
+.buttons {
+  position: absolute;
+  right: 0;
+  bottom: 15px; }
+
+.results.ng-enter {
+  transition: 600ms linear all;
+  opacity: 0;
+  transform: translateX(-100%); }
+
+.results.ng-enter-active {
+  opacity: 1;
+  transform: translateX(0); }
+
+.results.ng-enter-stagger {
+  transition-delay: 0.3s; }
+
+.results.ng-leave {
+  transition: 300ms linear all;
+  opacity: 1;
+  transform: translateX(0); }
+
+.results.ng-leave-active {
+  opacity: 0;
+  transform: translateX(100%); }
+
+.buttons button {
+  border: 0;
+  outline: none;
+  border: 1px solid black;
+  font-weight: bold;
+  font-size: 16px;
+  color: black;
+  padding: 10px;
+  margin-left: 10px;
+  transition: background-color 500ms; }
+  .buttons button:hover {
+    cursor: pointer;
+    background-color: #b3ccff; }
+
+#credit {
+  font-size: 18px;
+  position: absolute;
+  right: 10px;
+  bottom: 5px; }
+
+.Arrow:after {
+  content: "🡅";
+  position: absolute;
+  z-index: 5;
+  right: 25px;
+  top: 1.65vh;
+  animation: ArrowUp 3s infinite;
+  animation-timing-function: ease-out;
+  animation-delay: 200ms; }
+
+@keyframes ArrowUp {
+  0% {
+    top: 1.65vh;
+    opacity: 0.5; }
+  30% {
+    top: 0;
+    opacity: 0; }
+  55% {
+    top: 1.65vh;
+    opacity: 0; }
+  56% {
+    opacity: 0.5; }
+  82% {
+    top: 0;
+    opacity: 0; }
+  100% {
+    opacity: 0; } }
+.creditFade {
+  animation: creditFadeIn 2s;
+  animation-fill-mode: forwards; }
+
+@keyframes creditFadeIn {
+  0% {
+    opacity: 0.1; }
+  30% {
+    transform: skewX(20deg); }
+  60% {
+    transform: skewX(-20deg); }
+  70% {
+    transform: skewX(0deg); }
+  100% {
+    opacity: 1; } }
+.imgFade {
+  animation: imgFadeIn 750ms;
+  animation-fill-mode: forwards; }
+
+@keyframes imgFadeIn {
+  0% {
+    opacity: 1;
+    width: 1px;
+    height: 1px;
+    margin-top: 100px;
+    margin-left: 100px; }
+  100% {
+    opacity: 1;
+    width: 200px;
+    height: 200px;
+    margin-left: 0px;
+    margin-top: 0px; } }
+.textFade {
+  animation: textFadeIn 3s;
+  animation-fill-mode: forwards; }
+
+@keyframes textFadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@media screen and (min-width: 1400px) {
+  #form h2 {
+    font-size: 40px; }
+    #form h2 span {
+      font-size: 80px;
+      padding: 10px; } }
+@media screen and (max-width: 1400px) {
+  #form h2 {
+    font-size: 40px; }
+    #form h2 span {
+      font-size: 50px;
+      padding: 5px; } }
+@media screen and (max-width: 1250px) {
+  #searchbutton {
+    top: 10px;
+    left: 23%;
+    width: 390px; }
+
+  input[name="search"] {
+    width: 45%; }
+
+  #wikipic {
+    margin-top: 35px; }
+
+  #alert2 {
+    display: block;
+    text-align: left;
+    top: 250px !important; } }
+#HowManyResults {
+  display: inline-block;
+  font-size: 20px; }
+
+#alert2 {
+  font-size: 18px;
+  top: auto; }
+
+@media screen and (max-width: 830px) {
+  #HowManyResults {
+    width: 200px; }
+
+  input[name="search"] {
+    position: relative;
+    top: -10px;
+    width: 50%; }
+
+  input[name="nums"] {
+    position: relative;
+    top: -10px;
+    left: 5px; }
+
+  #searchbutton {
+    width: 300px;
+    left: 27%;
+    top: 5px; }
+
+  #suggestions {
+    margin-top: -13px; } }
+@media screen and (max-width: 677px) {
+  #searchbutton, #alert2 {
+    width: 250px; } }
+@media screen and (max-width: 664px) {
+  #wikipic {
+    position: relative;
+    bottom: 175px;
+    width: 200px;
+    opacity: 0.7;
+    z-index: -1; }
+
+  #SecondLine {
+    margin-top: -150px; }
+
+  #HowManyResults {
+    width: 150px; }
+
+  input[name="search"], input[name="nums"] {
+    top: -25px; }
+
+  #searchbutton {
+    width: 200px; }
+
+  #suggestions {
+    margin-top: -25px; }
+
+  #alert2 {
+    top: 270px;
+    width: 220px; } }
+@media screen and (max-width: 606px) {
+  input[name="nums"] {
+    left: -10px; }
+
+  #HowManyResults {
+    position: relative;
+    left: -10px; } }
+@media screen and (max-width: 540px) {
+  #form h2 {
+    font-size: 28px; } }
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="styles.css" type="text/css" rel="stylesheet"/>
+     <link rel="shortcut icon" href="imgs/favicon.ico" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.7.9/angular-animate.min.js"></script>
+    <script src="https://code.angularjs.org/1.7.9/angular-sanitize.js"></script>
+
+    <script src="script.js"></script>
+    <meta charset="UTF-8">
+    <title>Wikipedia Search Ⓒ Itay Shiff</title>
+  </head>
+  <body ng-app="myApp" ng-controller="Wikipedia">
+   <header ng-include src="'header.html'"></header>
+   <main>
+
+   	
+	
+	<form name="myForm" id="form">
+
+		<div> <h2 ng-bind-html="message"></h2> <img id="wikipic" src="imgs/wiki.png"> </div>
+
+		<div id="SecondLine">
+			<input type="search" name="search" placeholder="Enter something" autocomplete="off" ng-model="searchWiki" ng-class="(isSuggestions && myForm.search.$valid && myForm.nums.$valid && focusSearch) ? 'onSearchInput' : false" ng-keydown="handleSearch(searchWiki)" ng-focus="focusSearch=true" ng-blur="blurForSearch()" required>
+
+			<div role="alert" id="alert1">
+			      <span class="error" ng-if="myForm.search.$dirty && myForm.search.$error.required" style="color: red; font-weight: 800; font-size: 18px">
+			       Required!</span>
+			</div>
+			<!-- the Normal way, without the directive
+			<div id="suggestions">
+				<ul ng-repeat="title in suggestions.title track by $index" ng-class="{'last-suggestion': $last}">
+					<li ng-click="searchBySuggestion(title)"><strong>{{title}}</strong> <span ng-hide="{{suggestions.desc[$index] == 'nothing'}}">- {{suggestions.desc[$index]}}</span></li>
+				</ul>
+			</div>
+			-->
+			<autocomplete titles="suggestions.title" srcs="suggestions.desc" func="searchBySuggestion" ng-show="myForm.search.$valid && isSuggestions && myForm.nums.$valid && focusSearch"></autocomplete>
+
+			<div id="wrapperLangs" style="position: fixed; right: 10px; top: 10vh; z-index: 1000;">
+				<span style="font-size: 20px; position:relative;">Pick a language
+
+				<span style="width:140px; display: inline-block;" id="check"></span>
+				<select id="langs" ng-model="changeValue" ng-change="ChangeAlign(changeValue)" onfocus='this.size=7;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
+					  <option value="en" selected>English</option>
+					  <option value="nl">Nederlands</option>
+					  <option value="de">Deutsch</option>
+					  <option value="fr">Français</option>
+					  <option value="es">Español</option>
+					  <option value="ru">Русский</option>
+					  <option value="he">עברית</option>
+					  <option value="ar">العربية</option>
+					  <option value="fa">فارسی</option>
+					  <option value="ur">اردو</option>  
+					  <option value="zh">中文</option>  
+					  <option value="pt">Português</option>	
+					  <option value="hu">Magyar</option>	
+					  <option value="pl">Polski</option>
+					  <option value="hi">हिन्दी</option>
+					  <option value="pl">Română</option>
+					  <option value="it">Italiano</option>				  	  
+				</select>
+
+				</span>
+				
+			</div>
+
+			
+			<div id="HowManyResults"> How many results do you want to get?</div>
+			<input type="number" name="nums" step="1" ng-min="1" ng-max="25" ng-model="numLimit">
+			
+
+			<div role="alert" id="alert2">
+			    <span class="error" ng-if="myForm.nums.$invalid" style="color: red; font-weight: 800;">
+			      Sorry, you can search only up to 25 results.</span>
+			</div>
+
+			<button id="searchbutton" type="search" ng-click="search(searchWiki)">SEARCH</button>
+
+		</div>
+	</form>
+	<div id="content" hidden>
+
+		<div ng-if="nothingFound" style="text-align: center; font-size: 30px; padding-bottom: 25px;">NO RESULTS WERE FOUND 😢 😭 😢</div>
+
+		<ul>
+			<li class="results" ng-repeat="result in results track by $index" ng-class="{'last-suggestion': $last}">
+			
+			<span class="section1">
+				<img ng-src="{{results.src[$index]}}" class="allPics" ng-class="(numberSearches=1 && counter==results.length)?'imgFade':false" 
+				style="width: 10px; opacity: 0; height: 200px; outline: none; border: none;">
+				<img src="imgs/loading.gif" ng-if="counter!=results.length" style="width: 200px; height: 200px; margin-bottom: 40px; opacity: 0.6;">
+				<div style="width: 200px; opacity: 0; text-align: left !important;" ng-class="(numberSearches=1 && counter==results.length)?'textFade':false">{{results.info[$index]}}</div>
+			</span>
+
+			<div class="section2">
+				<strong style="font-size: 22px;"><u>{{result.title}}</u><br></strong>
+				<p ng-bind-html="result.snippet" id="lessInfo{{$index}}"></p>
+				<p id="moreInfo{{$index}}"></p>
+			</div>
+
+			<div class="buttons">
+				<button id="moreButton{{$index}}" ng-click="more(result.title, $index)">TELL ME MORE</button>
+				<button id="lessButton{{$index}}" ng-click="less(result.title, $index)" hidden>SHOW LESS</button>
+				<button ng-click="moveToSite(result.title)">MOVE TO SITE</button>
+			</div>
+			
+			</li>
+
+		</ul>
+	</div>
+
+	<div id="credit">
+		Ⓒ All rights reserved. Made with love by Itay Shiff
+	</div>
+
+    </main>
+	</body>
+ </html>
