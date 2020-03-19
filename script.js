@@ -107,6 +107,16 @@ let myApp = angular.module('myApp', ['ngSanitize', 'ngAnimate'])
 						wikipic.style.width = '150px';
 						wikipic.style.marginBottom = '35px';
 					}
+					
+					zoomOutMobile = () => {
+					    const viewport = document.querySelector('meta[name="viewport"]');
+
+					    if ( viewport ) {
+					      viewport.content = "initial-scale=0.4";
+					      viewport.content = "initial-scale=0.401";
+					    }
+					  }
+					zoomOutMobile();
 
 					$scope.results = [];
 
@@ -323,14 +333,6 @@ let myApp = angular.module('myApp', ['ngSanitize', 'ngAnimate'])
 						wasClicked = 0;
 					}
 				}, 100);
-					zoomOutMobile = () => {
-					    const viewport = document.querySelector('meta[name="viewport"]');
-
-					    if ( viewport ) {
-					      viewport.content = "initial-scale=0.4";
-					    }
-					  }
-					 this.zoomOutMobile();
 				};
 
 				$scope.changeValue = 'en'; // Initial language value
