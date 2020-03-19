@@ -340,15 +340,15 @@ let myApp = angular.module('myApp', ['ngSanitize', 'ngAnimate'])
 				}
 				
 				
-				var timer;
+
 				window.onscroll = () => {
-				    if (timer) {
-				        window.clearTimeout(timer);
+
+				    if (window.pageYOffset>25) {
+				    	wrapperLangs.hidden = true;
+				    } else {
+				    	wrapperLangs.hidden = false;
 				    }
-				    timer = window.setTimeout(function() {
-				       // actual code here. Your call back function.
-				    console.log(window.pageYOffset>innerHeight/12)
-				    }, 100);
+				    
 				};
 
 			}]);
