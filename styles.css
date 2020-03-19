@@ -23,7 +23,7 @@
   #menu-bar ul {
     display: flex;
     justify-content: flex-end;
-    margin-top: 1.75vh; }
+    margin-top: 2.25vh; }
   #menu-bar li {
     margin-right: 10px;
     padding-right: 15px;
@@ -246,25 +246,33 @@ input[name="nums"] {
   right: 10px;
   bottom: 5px; }
 
+#arrowUp {
+  width: 3vh;
+}
 .Arrow:after {
-  content: "🡅";
+  width: 3vh;
+  height: 3vh;
+  content: '';
+  background: url("imgs/arrowup.png");
+  background-position: center center;
+  background-size: cover;
   position: absolute;
   z-index: 5;
   right: 25px;
-  top: 1.65vh;
+  top: 2.5vh;
   animation: ArrowUp 3s infinite;
   animation-timing-function: ease-out;
   animation-delay: 200ms; }
 
 @keyframes ArrowUp {
   0% {
-    top: 1.65vh;
+    top: 2.5vh;
     opacity: 0.5; }
   30% {
     top: 0;
     opacity: 0; }
   55% {
-    top: 1.65vh;
+    top: 2.5vh;
     opacity: 0; }
   56% {
     opacity: 0.5; }
@@ -374,7 +382,7 @@ input[name="nums"] {
 @media screen and (max-width: 677px) {
   #searchbutton, #alert2 {
     width: 250px; } }
-@media screen and (max-width: 664px) {
+@media screen and (max-width: 685px) {
   #wikipic {
     position: relative;
     bottom: 175px;
@@ -410,5 +418,9 @@ input[name="nums"] {
 @media screen and (max-width: 540px) {
   #form h2 {
     font-size: 28px; } }
-
+@media screen and (max-width: 590px) {
+  #form h2 {
+    font-size: 24px;
+  }
+}
 /*# sourceMappingURL=styles.css.map */

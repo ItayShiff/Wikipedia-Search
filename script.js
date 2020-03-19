@@ -123,8 +123,9 @@ let myApp = angular.module('myApp', ['ngSanitize', 'ngAnimate'])
 							}
 						}, 15);			
 					}
+					form.style.paddingTop = '5vh';
+					if (window.innerWidth<665) form.style.paddingTop = '10vh';
 
-					
 					let srcs = [];
 					let infos = [];
 					$scope.counter = 0;
@@ -185,9 +186,8 @@ let myApp = angular.module('myApp', ['ngSanitize', 'ngAnimate'])
 					         	console.log('now');	         	
 					         	$scope.results.info = infos;
 					         	$scope.results.src = srcs;
-					         	wrapperLangs.style.position = 'absolute';
-								wrapperLangs.style.top = '-3px';		
-
+					         	
+								
 					         	// Make sure when all the images are loaded, until then show animation of "loading"
 					         	let imgs = document.querySelectorAll('img.allPics');
 	         					for (let img of imgs) {
@@ -339,4 +339,16 @@ let myApp = angular.module('myApp', ['ngSanitize', 'ngAnimate'])
 					}
 				}
 				
+				
+				var timer;
+				window.onscroll = () => {
+				    if (timer) {
+				        window.clearTimeout(timer);
+				    }
+				    timer = window.setTimeout(function() {
+				       // actual code here. Your call back function.
+				    console.log(window.pageYOffset>innerHeight/12)
+				    }, 100);
+				};
+
 			}]);
