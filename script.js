@@ -89,7 +89,6 @@ let myApp = angular.module('myApp', ['ngSanitize', 'ngAnimate'])
 				function MakeSearch(searchWiki) {
 					$scope.isSuggestions = false;
 
-					
 					myForm.search.blur();
 					wasClicked = 0;
 					if (myForm.search.value.length == 0) {
@@ -108,6 +107,15 @@ let myApp = angular.module('myApp', ['ngSanitize', 'ngAnimate'])
 						wikipic.style.width = '150px';
 						wikipic.style.marginBottom = '35px';
 					}
+					zoomOutMobile = () => {
+					    const viewport = document.querySelector('meta[name="viewport"]');
+
+					    if ( viewport ) {
+					      viewport.content = "initial-scale=0.4";
+					    }
+					  }
+					 this.zoomOutMobile();
+
 					$scope.results = [];
 
 					$scope.numberSearches++;
@@ -342,13 +350,11 @@ let myApp = angular.module('myApp', ['ngSanitize', 'ngAnimate'])
 				
 
 				window.onscroll = () => {
-
 				    if (window.pageYOffset>25) {
 				    	wrapperLangs.hidden = true;
 				    } else {
 				    	wrapperLangs.hidden = false;
 				    }
-				    
 				};
 
 			}]);
